@@ -32,4 +32,4 @@ Run `npm test`. The tests cover missing facts, invalid categories, evidence matc
 - [x] Create the [RouteProof team](https://lablab.ai/ai-hackathons/assemblyai-voice-agent-hackathon/routeproof) on lablab.ai.
 - [ ] Submit the title, descriptions, tags, cover image, video, slides, repository, and application URL before September 30, 2026 at 6:00 PM EAT.
 
-The visual concept and submission cover are in `design/routeproof-concept.png` and `design/routeproof-cover.png`.
+The visual concept and submission cover are in `design/routeproof-concept.png` and `design/routeproof-cover.png`. The five-slide pitch is `design/routeproof-pitch.pdf`; its source is `scripts/build_deck.py` (requires ReportLab only when regenerating the PDF).
