@@ -27,13 +27,15 @@ Run `npm test`. The tests cover missing facts, invalid categories, evidence matc
 - [x] Verify a live voice conversation, tool-created draft, and clean session end with an AssemblyAI key.
 - [ ] Retest conflicting statements and interruption handling with the revised prompt.
 - [ ] Test the hosted demo with a fresh browser and a second person.
-- [ ] Deploy `render.yaml` as a Render Blueprint and enter `ASSEMBLYAI_API_KEY` in Render's secret prompt. The file contains no key.
+- [x] Deploy `render.yaml` as a free Render service with `ASSEMBLYAI_API_KEY` stored as a Render secret. The file contains no key.
 - [x] Use an MIT license.
-- [ ] Make the GitHub repository public and deploy the app to a public URL.
+- [x] Make the GitHub repository public and deploy the app to a public URL.
 - [x] Create a five-slide pitch deck.
 - [x] Create a 40-second, silent video presentation from the pitch slides.
 - [ ] Record a live screen demo for stronger judging evidence.
 - [x] Create the [RouteProof team](https://lablab.ai/ai-hackathons/assemblyai-voice-agent-hackathon/routeproof) on lablab.ai.
-- [ ] Submit the title, descriptions, tags, cover image, video, slides, repository, and application URL before September 30, 2026 at 6:00 PM EAT.
+- [x] Submit the title, descriptions, tags, cover image, video, slides, repository, and application URL before September 30, 2026 at 6:00 PM EAT.
 
 The visual concept and submission cover are in `design/routeproof-concept.png` and `design/routeproof-cover.png`. The five-slide pitch is `design/routeproof-pitch.pdf`; its source is `scripts/build_deck.py` (requires ReportLab only when regenerating the PDF). The submitted video presentation is `design/routeproof-video.mp4`.
+
+Published entry: https://lablab.ai/ai-hackathons/assemblyai-voice-agent-hackathon/routeproof/routeproof. Hosted demo: https://routeproof-demo.onrender.com.
