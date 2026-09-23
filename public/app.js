@@ -116,6 +116,7 @@ function playAudio(base64) {
 function flushAudio() { const session = state.session; if (!session) return; for (const source of session.sources) { try { source.stop(); } catch {} } session.sources.clear(); session.nextPlayTime = session.outputContext.currentTime; }
 
 function handleEvent(event) {
+  if (event.type === 'session.ended') { stopVoice(false); return; }
   if (event.type === 'session.ready') { state.ready = true; setConnection('Live session', 'live'); $('transcript-status').textContent = 'Listening'; state.session.sessionId = event.session_id; return; }
   if (event.type === 'session.error') { toast(event.message || 'Voice session error'); $('transcript-status').textContent = 'Voice error'; return; }
   if (event.type === 'input.speech.started') { state.lastEvent = event.type; $('transcript-status').textContent = 'Rider speaking'; return; }
@@ -168,8 +169,20 @@ async function startVoice() {
 }
 
 async function stopVoice(clean = true) {
-  const session = state.session; if (!session) return; state.session = null; state.ready = false; state.pending = [];
-  if (clean && session.ws.readyState === WebSocket.OPEN) { try { session.ws.send(JSON.stringify({ type: 'session.end' })); } catch {} }
+  const session = state.session; if (!session) return;
+  if (clean && session.ws.readyState === WebSocket.OPEN) {
+    if (session.ending) return;
+    session.ending = true;
+    session.stream.getTracks().forEach(track => track.stop());
+    setConnection('Ending session', '');
+    try {
+      session.ws.send(JSON.stringify({ type: 'session.end' }));
+      session.endTimer = setTimeout(() => { if (state.session?.ws === session.ws) stopVoice(false); }, 3000);
+      return;
+    } catch {}
+  }
+  clearTimeout(session.endTimer);
+  state.session = null; state.ready = false; state.pending = [];
   session.ws.close(); session.stream.getTracks().forEach(track => track.stop()); session.source.disconnect(); session.worklet.disconnect(); session.silentGain.disconnect();
   for (const source of session.sources) { try { source.stop(); } catch {} }
   await session.inputContext.close().catch(() => {}); await session.outputContext.close().catch(() => {});
@@ -214,4 +227,11 @@ async function init() {
   try { const response = await fetch('/api/health'); const data = await response.json(); setConnection(data.ready ? 'Ready for report' : 'API key needed', data.ready ? 'ready' : ''); }
   catch { setConnection('Server unavailable'); }
 }
+
+window.addEventListener('pagehide', () => {
+  const session = state.session;
+  if (session?.ws.readyState === WebSocket.OPEN) {
+    try { session.ws.send(JSON.stringify({ type: 'session.end' })); } catch {}
+  }
+});
 init();

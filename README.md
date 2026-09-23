@@ -29,7 +29,8 @@ Run `npm test`. The tests cover missing facts, invalid categories, evidence matc
 - [ ] Deploy `render.yaml` as a Render Blueprint and enter `ASSEMBLYAI_API_KEY` in Render's secret prompt. The file contains no key.
 - [x] Use an MIT license.
 - [ ] Make the GitHub repository public and deploy the app to a public URL.
-- [ ] Record a concise demo video and create a pitch deck.
+- [x] Create a five-slide pitch deck.
+- [ ] Record a concise live demo video.
 - [x] Create the [RouteProof team](https://lablab.ai/ai-hackathons/assemblyai-voice-agent-hackathon/routeproof) on lablab.ai.
 - [ ] Submit the title, descriptions, tags, cover image, video, slides, repository, and application URL before September 30, 2026 at 6:00 PM EAT.
 
