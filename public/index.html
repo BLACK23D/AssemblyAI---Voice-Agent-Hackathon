@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#17212c">
+  <title>RouteProof — Delivery exception desk</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/style.css?v=5">
+  <script type="module" src="/app.js?v=7"></script>
+</head>
+<body>
+  <svg class="sprite" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="2" width="6" height="13" rx="3"/><path d="M5 10v2a7 7 0 0 0 14 0v-2M12 19v3m-4 0h8"/></symbol>
+    <symbol id="i-route" viewBox="0 0 24 24"><circle cx="5" cy="5" r="2"/><circle cx="19" cy="19" r="2"/><path d="M7 5h8a4 4 0 0 1 0 8H9a4 4 0 0 0 0 8h8"/></symbol>
+    <symbol id="i-alert" viewBox="0 0 24 24"><path d="m12 3 10 18H2L12 3Z"/><path d="M12 9v5m0 3h.01"/></symbol>
+    <symbol id="i-list" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h16m-6-6 6 6-6 6"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m4 12 5 5L20 6"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="M5 5 19 19M19 5 5 19"/></symbol>
+  </svg>
+  <div class="shell">
+    <aside class="sidebar">
+      <div class="brand"><span class="brand-mark" aria-hidden="true">R</span><div><strong>RouteProof</strong><small>DELIVERY EXCEPTION DESK</small></div></div>
+      <nav aria-label="Main navigation">
+        <button class="nav-item" data-view="overview"><svg><use href="#i-route"/></svg>Overview</button>
+        <button class="nav-item active" data-view="exceptions"><svg><use href="#i-alert"/></svg>Exceptions</button>
+        <button class="nav-item" data-view="routes"><svg><use href="#i-route"/></svg>Routes</button>
+        <button class="nav-item" data-view="activity"><svg><use href="#i-list"/></svg>Activity</button>
+      </nav>
+      <div class="sidebar-bottom"><span class="location-dot"></span>Nairobi, Kenya<br><span class="small-indent">Local prototype</span></div>
+    </aside>
+    <main class="main">
+      <header class="page-header">
+        <div><h1>Delivery exceptions, handled while the rider is moving</h1><p>Riders speak to an AI voice agent. You capture the facts, then review what happens next.</p></div>
+        <div class="header-actions"><span class="date" id="today"></span><button class="quiet-button" id="new-report">New report</button></div>
+      </header>
+      <div class="content" id="exceptions-view">
+        <div class="top-grid">
+          <section class="voice-panel" aria-labelledby="voice-title">
+            <div class="voice-top"><div class="voice-title"><span class="wave-glyph" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span><div><h2 id="voice-title">RouteProof Voice</h2><p>Powered by AssemblyAI</p></div></div><span class="connection-state" id="connection-state"><span></span>Checking setup</span></div>
+            <div class="voice-center"><button class="mic-button" id="mic-button" aria-label="Start voice report"><svg><use href="#i-mic"/></svg></button><h3 id="voice-action-title">Start voice report</h3><p id="voice-action-help">Choose a stop, then speak with the agent</p></div>
+            <div class="transcript-box"><div class="transcript-heading"><strong>Live transcript</strong><span id="transcript-status">Waiting for speech</span></div><div class="transcript-content" id="transcript" aria-live="polite"><p class="empty-transcript">Your conversation will appear here in real time.</p></div></div>
+          </section>
+          <section class="draft-panel" aria-labelledby="draft-title">
+            <div class="panel-title"><h2 id="draft-title">Draft exception</h2><span class="status-pill draft" id="draft-status">Draft</span></div>
+            <div class="draft-fields">
+              <label><span>Order</span><select id="order-select"></select></label>
+              <label><span>Issue</span><select id="issue-select"><option value="">Select issue</option></select></label>
+              <div class="readonly-row"><span>Rider</span><strong id="rider-value"></strong></div>
+              <div class="readonly-row"><span>Stop</span><strong id="stop-value"></strong></div>
+              <label><span>Contact</span><select id="contact-select"><option value="">Select method</option></select></label>
+              <label><span>Response</span><select id="response-select"><option value="">Select response</option></select></label>
+            </div>
+            <div class="section-rule"><strong>What happened</strong><textarea id="details-input" rows="2" placeholder="Use voice or type the rider's account"></textarea></div>
+            <div class="section-rule"><strong>Next action</strong><textarea id="action-input" rows="2" placeholder="What should dispatch do next?"></textarea></div>
+            <div class="section-rule evidence"><strong>Spoken evidence</strong><p id="evidence-value">No quote captured yet.</p><span id="evidence-label"></span></div>
+            <div class="missing-block"><strong>Missing facts</strong><ul id="missing-list"></ul></div>
+            <button class="primary-button" id="review-button">Review draft <svg><use href="#i-arrow"/></svg></button>
+          </section>
+        </div>
+        <section class="recent-panel" aria-labelledby="recent-title"><div class="recent-title"><h2 id="recent-title">Recent exceptions</h2><span>Saved in this browser</span></div><div class="table-wrap"><table><thead><tr><th>Order</th><th>Issue</th><th>Rider</th><th>Stop</th><th>Status</th><th>Last update</th><th><span class="sr-only">Open</span></th></tr></thead><tbody id="exceptions-body"></tbody></table></div></section>
+      </div>
+      <section class="secondary-view hidden" id="secondary-view" aria-live="polite"><h2 id="secondary-title"></h2><p id="secondary-description"></p><div id="secondary-content"></div></section>
+    </main>
+  </div>
+  <dialog id="review-dialog"><div class="dialog-head"><div><h2>Review exception</h2><p>Confirm the facts before marking this report approved.</p></div><button class="icon-button" id="close-review" aria-label="Close review"><svg><use href="#i-close"/></svg></button></div><dl id="review-facts"></dl><div class="dialog-actions"><button class="quiet-button" id="edit-draft">Keep editing</button><button class="primary-button" id="approve-button">Approve exception <svg><use href="#i-check"/></svg></button></div></dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
