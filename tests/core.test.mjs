@@ -19,3 +19,12 @@ test('invalid categories are rejected and spoken evidence is not silently verifi
   const mismatch = mergeReport(initial, { evidenceQuote:'I rang the bell' }, [{ role:'rider', text:'I called twice at the gate.' }]);
   assert.equal(mismatch.quoteVerified, false);
 });
+
+test('contradictory contact details cannot be approved', () => {
+  const draft = mergeReport(createDraft(orders[0]), {
+    issue: 'Customer unreachable', contactMethod: 'None', customerResponse: 'No answer',
+    details: 'The customer was not at the gate.', nextAction: 'Ask dispatch to call.'
+  });
+  assert.ok(missingFacts(draft).includes('Contact and response conflict'));
+  assert.throws(() => approveDraft(draft), /Contact and response conflict/);
+});

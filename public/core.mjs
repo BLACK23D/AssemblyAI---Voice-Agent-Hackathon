@@ -20,6 +20,7 @@ export function missingFacts(draft) {
     !draft.issue && 'Issue',
     !draft.contactMethod && 'Attempted contact method',
     !draft.customerResponse && 'Customer response',
+    draft.contactMethod && draft.customerResponse && ((draft.contactMethod === 'None') !== (draft.customerResponse === 'No contact attempted')) && 'Contact and response conflict',
     !draft.details && 'What happened',
     !draft.nextAction && 'Suggested next action'
   ].filter(Boolean);
