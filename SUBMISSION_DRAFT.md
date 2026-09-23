@@ -36,6 +36,6 @@ Delivery teams lose time when a failed drop-off becomes a vague chat message: â€
 ## Files and links still needed
 
 - Cover image: `design/routeproof-cover.png`.
-- Recorded video presentation. The slide deck is `design/routeproof-pitch.pdf`.
+- Video presentation: `design/routeproof-video.mp4` (40-second silent slide walkthrough). The slide deck is `design/routeproof-pitch.pdf`.
 - Public GitHub repository and hosted HTTPS demo URL. The designated repository is currently private.
 - Confirmed live voice test with the userâ€™s AssemblyAI account.

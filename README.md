@@ -20,18 +20,20 @@ The interface works without a key for manual review testing. Live voice requires
 
 ## Verification
 
-Run `npm test`. The tests cover missing facts, invalid categories, evidence matching, static serving, and the server-side token exchange. A real voice session still needs an AssemblyAI key and microphone.
+Run `npm test`. The tests cover missing facts, invalid categories, evidence matching, static serving, and the server-side token exchange. A live Edge session on September 23, 2026 verified transcription, follow-up questions, a `record_exception` tool call, draft population, and clean session ending. The rider's account contained conflicting facts; the draft needed human review, and the system prompt was then tightened to ask for clarification. The revised prompt and interruption handling have not been retested live.
 
 ## Submission checklist
 
-- [ ] Verify a complete live voice conversation and interruption handling with an AssemblyAI key.
+- [x] Verify a live voice conversation, tool-created draft, and clean session end with an AssemblyAI key.
+- [ ] Retest conflicting statements and interruption handling with the revised prompt.
 - [ ] Test the hosted demo with a fresh browser and a second person.
 - [ ] Deploy `render.yaml` as a Render Blueprint and enter `ASSEMBLYAI_API_KEY` in Render's secret prompt. The file contains no key.
 - [x] Use an MIT license.
 - [ ] Make the GitHub repository public and deploy the app to a public URL.
 - [x] Create a five-slide pitch deck.
-- [ ] Record a concise live demo video.
+- [x] Create a 40-second, silent video presentation from the pitch slides.
+- [ ] Record a live screen demo for stronger judging evidence.
 - [x] Create the [RouteProof team](https://lablab.ai/ai-hackathons/assemblyai-voice-agent-hackathon/routeproof) on lablab.ai.
 - [ ] Submit the title, descriptions, tags, cover image, video, slides, repository, and application URL before September 30, 2026 at 6:00 PM EAT.
 
-The visual concept and submission cover are in `design/routeproof-concept.png` and `design/routeproof-cover.png`. The five-slide pitch is `design/routeproof-pitch.pdf`; its source is `scripts/build_deck.py` (requires ReportLab only when regenerating the PDF).
+The visual concept and submission cover are in `design/routeproof-concept.png` and `design/routeproof-cover.png`. The five-slide pitch is `design/routeproof-pitch.pdf`; its source is `scripts/build_deck.py` (requires ReportLab only when regenerating the PDF). The submitted video presentation is `design/routeproof-video.mp4`.
