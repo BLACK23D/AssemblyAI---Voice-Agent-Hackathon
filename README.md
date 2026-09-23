@@ -26,6 +26,7 @@ Run `npm test`. The tests cover missing facts, invalid categories, evidence matc
 
 - [ ] Verify a complete live voice conversation and interruption handling with an AssemblyAI key.
 - [ ] Test the hosted demo with a fresh browser and a second person.
+- [ ] Deploy `render.yaml` as a Render Blueprint and enter `ASSEMBLYAI_API_KEY` in Render's secret prompt. The file contains no key.
 - [x] Use an MIT license.
 - [ ] Make the GitHub repository public and deploy the app to a public URL.
 - [ ] Record a concise demo video and create a pitch deck.
